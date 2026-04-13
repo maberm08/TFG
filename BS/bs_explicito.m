@@ -47,9 +47,6 @@ function [F,S,t] = bs_explicito(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
 
     % Iteración hacia atrás en el tiempo
     for j = M:-1:1
-        for i = 2:N
-            k = i-1;
-            F(i,j) = aa(k)*F(i-1,j+1) + bb(k)*F(i,j+1) + cc(k)*F(i+1,j+1);
-        end
+        F(2:N,j) = aa .* F(1:N-1,j+1) + bb .* F(2:N,j+1) + cc .* F(3:N+1,j+1);
     end
 end
