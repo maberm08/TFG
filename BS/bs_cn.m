@@ -57,7 +57,7 @@ function [F,S,t] = bs_cn(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
         % Término 2F^{j+1}
         segundo_miembro = 2 * F(2:N,j+1);
 
-        % Término b^{j,j+1} de contorno
+        % Término d^{j,j+1} de contorno
         d_jj1 = zeros(N-1,1);
         d_jj1(1)   = alpha(1)   * (g1(t(j)) + g1(t(j+1)));
         d_jj1(end) = gamma(end) * (g2(t(j)) + g2(t(j+1)));
