@@ -5,8 +5,8 @@ function [F,S,t] = bs_explicito(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
 %   N,M    : número de subintervalos espacial y temporal
 %   r,q    : tipo de interés y dividendo continuo (ctes)
 %   sigma  : volatilidad
-%   Phi    : payoff terminal, función handle
-%   g1,g2  : condiciones de contorno, función handle
+%   Phi    : payoff terminal, función
+%   g1,g2  : condiciones de contorno, función
 %
 % SALIDAS:
 %   F      : matriz de aproximaciones, F(i+1,j+1) ~ f(S_i,t_j)
