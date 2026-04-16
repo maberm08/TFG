@@ -111,6 +111,36 @@ Este script:
 - ejecuta los tres esquemas,
 - compara el resultado con una función auxiliar análoga a `blsprice`.
 
+## Validación en el caso de coeficientes dependientes del tiempo
+
+Para las opciones europeas vanilla con coeficientes **deterministas** dependientes del tiempo,
+\[
+r=r(t),\qquad q=q(t),\qquad \sigma=\sigma(t),
+\]
+los scripts de prueba emplean una función auxiliar `bsprice_tdep`, análoga a `blsprice`.
+
+Esta función se basa en la extensión clásica de la fórmula de Black–Scholes-Merton al caso en que el tipo de interés, los dividendos y la volatilidad dependen únicamente del tiempo. En ese contexto, los parámetros constantes se sustituyen por sus cantidades acumuladas en el intervalo \([0,T]\):
+\[
+R=\int_0^T r(u)\,du,\qquad
+Q=\int_0^T q(u)\,du,\qquad
+V=\int_0^T \sigma(u)^2\,du.
+\]
+
+Con estas cantidades, se definen
+\[
+d_1=\frac{\log(S/K)+R-Q+\tfrac12 V}{\sqrt{V}},
+\qquad
+d_2=d_1-\sqrt{V},
+\]
+y los precios de call y put vienen dados por
+\[
+C=S e^{-Q}N(d_1)-K e^{-R}N(d_2),
+\qquad
+P=K e^{-R}N(-d_2)-S e^{-Q}N(-d_1).
+\]
+
+La función bsprice_tdep se basa en la extensión clásica (Merton, R. C. (1973). *Theory of Rational Option Pricing*. Bell Journal of Economics and Management Science, 4(1), 141–183.) de Black–Scholes–Merton a coeficientes deterministas dependientes del tiempo. El trabajo *The Time-Dependent Black-Scholes Model and Calibration to Market* justifica el uso de la varianza integrada en la fórmula cerrada, reforzando así la validez de la comparación.
+
 ## Notación
 
 El código sigue la notación desarrollada en el texto teórico:
@@ -122,9 +152,11 @@ El código sigue la notación desarrollada en el texto teórico:
 - nodos temporales: \( t_j = j\tau \),
 - aproximación numérica: `F(i+1,j+1) ≈ f(S_i,t_j)`.
 
+
 ## Observaciones
 
 - En el esquema explícito, la estabilidad depende de la elección de la malla.
 - En los esquemas implícito y de Crank–Nicolson para coeficientes constantes se reutiliza una factorización LU tridiagonal.
 - En el caso de coeficientes dependientes del tiempo, las matrices del sistema cambian con el nivel temporal.
-- La comparación con funciones cerradas (blsprice y blsprice_tdep) permite validar la implementación en los casos europeos estudiados, pero no garantiza su correcta implementación.
+- La comparación con funciones cerradas (blsprice y bsprice_tdep) permite validar la implementación en los casos europeos estudiados, pero no garantiza su correcta implementación.
+
