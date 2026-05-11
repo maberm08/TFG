@@ -1,5 +1,5 @@
 function [F,S,t] = bs_implicito_t(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
-% Esquema explícito con coeficientes dependientes de t
+% Esquema implícito con coeficientes dependientes de t
 % ENTRADAS:
 %   a,b    : extremos del dominio espacial
 %   T      : vencimiento
