@@ -6,7 +6,7 @@ function [F,S,t] = bs_explicito_t(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
 %   N,M    : número de subintervalos espacial y temporal
 %   r,q    : tipo de interés y dividendo continuo, funciones 
 %   sigma  : volatilidad, función
-%   Phi    : payoff terminal, función
+%   Phi    : payoff, función
 %   g1,g2  : condiciones de contorno, función
 %
 % SALIDAS:
@@ -29,7 +29,7 @@ function [F,S,t] = bs_explicito_t(a,b,T,N,M,r,q,sigma,Phi,g1,g2)
         F(N+1,j) = g2(t(j));
     end
 
-    % Condición terminal
+    % Condición final
     for i = 1:N+1
         F(i,M+1) = Phi(S(i));
     end
