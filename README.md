@@ -10,7 +10,7 @@ Se incluyen los tres esquemas clásicos estudiados en el trabajo:
 
 El código está planteado de forma modular para poder reutilizar el mismo núcleo numérico en distintos contratos, modificando únicamente:
 
-- el payoff terminal,
+- el payoff,
 - las condiciones de contorno,
 - el intervalo espacial.
 
