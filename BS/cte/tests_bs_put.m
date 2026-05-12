@@ -26,7 +26,7 @@ M = 2000;         % número de subintervalos temporales
 a = 0;
 b = Smax;
 
-% Payoff terminal
+% Payoff
 Phi = @(S) max(K-S,0);
 
 % Condiciones de contorno para put europea
