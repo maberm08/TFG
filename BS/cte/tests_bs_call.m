@@ -26,7 +26,7 @@ M = 4000;         % número de subintervalos temporales
 a = 0;
 b = Smax;
 
-% Payoff final
+% Payoff
 Phi = @(S) max(S-K,0);
 
 % Condiciones de contorno para call europea
