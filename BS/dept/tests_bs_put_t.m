@@ -31,7 +31,7 @@ sigma = @(t) 0.18 + 0.04*t;
 a = 0;
 b = Smax;
 
-% Payoff terminal
+% Payoff
 Phi = @(S) max(K-S,0);
 
 % Condiciones de contorno para put europea
